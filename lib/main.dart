@@ -24,9 +24,9 @@ class _MyAppState extends State<MyApp> {
       'questionText': 'What\s your favourite color?',
       'answer': [
         {'text': 'Black', 'score': 10},
-        {'text': 'Red', 'score': 7},
-        {'text': 'Green', 'score': 3},
-        {'text': 'White', 'score': 1}
+        {'text': 'Red', 'score': 8},
+        {'text': 'Green', 'score': 6},
+        {'text': 'White', 'score': 4}
       ],
     },
     {
@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
         {'text': 'Cat', 'score': 10},
         {'text': 'Dog', 'score': 8},
         {'text': 'Lion Cub', 'score': 6},
-        {'text': 'Snake', 'score': 1}
+        {'text': 'Snake', 'score': 4}
       ]
     },
     {
@@ -43,8 +43,8 @@ class _MyAppState extends State<MyApp> {
       'answer': [
         {'text': 'Jisoo', 'score': 10},
         {'text': 'Rose', 'score': 8},
-        {'text': 'Jenny', 'score': 7},
-        {'text': 'Lisa', 'score': 6}
+        {'text': 'Jenny', 'score': 6},
+        {'text': 'Lisa', 'score': 4}
       ]
     }
   ];
@@ -52,7 +52,13 @@ class _MyAppState extends State<MyApp> {
   
   var _questionIndex = 0;
   var _totalScore = 0;
-  // create function to onPressed
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
   void _answerQuestion( int score) {
     setState(() {
       _questionIndex = _questionIndex + 1;
@@ -83,7 +89,7 @@ class _MyAppState extends State<MyApp> {
               answerQuestion: _answerQuestion,
               questions: _questions,
             )
-          : Result(_totalScore),
+          : Result(_totalScore, _resetQuiz ),
     ));
   }
 }
