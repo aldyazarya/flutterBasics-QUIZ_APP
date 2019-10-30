@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './question.dart';
+import './answer.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -44,20 +45,10 @@ class _MyAppState extends State<MyApp> {
           children: [
             // Text(questions.elementAt(0)), // function elementAt for indexing just like questions[0]
             Question(questions[_questionIndex]),
-            RaisedButton(
-              child: Text('answer 1'),
-              onPressed: _answerQuestion, //declare function
-            ),
-            RaisedButton(
-              child: Text('answer 2'),
-              onPressed: () => print('answer choosen 2'), //anonymous function type 1
-            ),
-            RaisedButton(
-              child: Text('answer 3'),
-              onPressed: () {   //anonymous function type 2
-                print('answer choosen 3'); //use it when we just want to declare one function or use it in one place
-              },
-            )
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+            
           ],
         ),
       ),

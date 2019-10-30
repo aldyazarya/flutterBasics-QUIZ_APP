@@ -10,7 +10,7 @@ class Question extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.only(bottom: 10, top: 10, left: 10, right: 10),
       child: Text(questionText, 
       style: TextStyle(fontSize: 28),
       textAlign: TextAlign.center,
