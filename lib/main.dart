@@ -18,52 +18,72 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var _questionIndex = 0;
-
+  
   final _questions = const [
     {
       'questionText': 'What\s your favourite color?',
-      'answer': ['Black', 'Red', 'Green', 'White'],
+      'answer': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'Red', 'score': 7},
+        {'text': 'Green', 'score': 3},
+        {'text': 'White', 'score': 1}
+      ],
     },
     {
       'questionText': 'What\s your favourite animal?',
-      'answer': ['Rabbit', 'Snake', 'Elephant', 'Lion']
+      'answer': [
+        {'text': 'Cat', 'score': 10},
+        {'text': 'Dog', 'score': 8},
+        {'text': 'Lion Cub', 'score': 6},
+        {'text': 'Snake', 'score': 1}
+      ]
     },
     {
       'questionText': 'Who\s your favourite member black pink?',
-      'answer': ['Jisoo', 'Jenny', 'Lisa', 'Rose']
+      'answer': [
+        {'text': 'Jisoo', 'score': 10},
+        {'text': 'Rose', 'score': 8},
+        {'text': 'Jenny', 'score': 7},
+        {'text': 'Lisa', 'score': 6}
+      ]
     }
   ];
-
+  
+  
+  var _questionIndex = 0;
+  var _totalScore = 0;
   // create function to onPressed
-  void _answerQuestion() {
+  void _answerQuestion( int score) {
+    setState(() {
+      _questionIndex = _questionIndex + 1;
+    });
+    print(_questionIndex);
+
+    _totalScore += score;
+
+
     if (_questionIndex < _questions.length) {
       print('We have more question');
     } else {
       print('no more questions');
     }
 
-    setState(() {
-      _questionIndex = _questionIndex + 1;
-    });
-    print(_questionIndex);
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('My First App'),
-        ),
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                questionIndex: _questionIndex,
-                answerQuestion: _answerQuestion,
-                questions: _questions,
-              )
-            : Result(),
-      )
-    );
+        home: Scaffold(
+      appBar: AppBar(
+        title: Text('My First App'),
+      ),
+      body: _questionIndex < _questions.length
+          ? Quiz(
+              questionIndex: _questionIndex,
+              answerQuestion: _answerQuestion,
+              questions: _questions,
+            )
+          : Result(_totalScore),
+    ));
   }
 }
