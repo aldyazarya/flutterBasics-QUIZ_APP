@@ -1,6 +1,5 @@
-# flutter_complete_guide
+# Flutter Basics Quiz App
 
-A new Flutter project.
 
 ## Getting Started
 
